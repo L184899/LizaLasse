@@ -1,7 +1,0 @@
-POST https://lizalasse.onrender.com/save
-Content-Type: application/json
-
-{
-  "name": "Lasse",
-  "email": "lasse@example.com"
-}
