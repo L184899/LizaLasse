@@ -4,6 +4,8 @@ import static spark.Spark.*;
 import com.google.gson.*;
 import java.sql.*;
 import java.util.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Main {
 
@@ -12,6 +14,16 @@ public class Main {
         Gson gson = new Gson();
 
         createTable();
+
+        // --- Add users on startup ---
+        try {
+            sendUserToRender("Liza", "liza@example.com");
+            sendUserToRender("Lasse", "lasse@example.com");
+            System.out.println("Users sent to Render backend!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // ----------------------------
 
         get("/ping", (req, res) -> "Backend is running");
 
@@ -75,5 +87,20 @@ public class Main {
             e.printStackTrace();
         }
         return list;
+    }
+
+    // ---- NEW METHOD: sends user to Render backend ----
+    private static void sendUserToRender(String name, String email) throws Exception {
+        URL url = new URL("https://lizalasse.onrender.com/save");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Type", "application/json");
+
+        String json = String.format("{\"name\":\"%s\",\"email\":\"%s\"}", name, email);
+        conn.getOutputStream().write(json.getBytes());
+
+        int response = conn.getResponseCode();
+        System.out.println("Render /save responded: " + response);
     }
 }

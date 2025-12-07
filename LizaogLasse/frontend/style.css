@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eef2f6;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #598392;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.user-list {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.user-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.user-card h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.user-card p {
+    margin: 6px 0 0;
+    font-size: 15px;
+}
+
+.loading {
+    text-align: center;
+    color: #666;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    color: #666;
+}
